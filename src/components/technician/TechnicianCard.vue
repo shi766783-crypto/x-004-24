@@ -23,6 +23,9 @@ const cats = computed(() =>
       <div class="cats">{{ cats || '未设置类别' }}</div>
       <div class="row">
         <StarRating :model-value="technician.avgRating ?? 0" readonly show-value />
+        <span class="good-rate" v-if="technician.reviewCount">
+          好评率 {{ Math.round((technician.goodRate ?? 0) * 100) }}%
+        </span>
         <span class="area" v-if="technician.serviceArea">{{ technician.serviceArea }}</span>
       </div>
     </div>
@@ -85,6 +88,14 @@ const cats = computed(() =>
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+}
+.good-rate {
+  font-size: 12px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 2px 8px;
+  border-radius: 6px;
 }
 .area {
   font-size: 12px;
